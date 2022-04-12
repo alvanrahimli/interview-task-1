@@ -1,14 +1,16 @@
 ### Encrypt
-POST http://localhost:10200/api/Encryption/encrypt
+POST https://localhost:7043/api/Encryption/encrypt
 Content-Type: application/json
+Accept-Encoding: gzip, deflate, br
 
 {
   "data": "AAAA"
 }
 
 ### Decrypt
-POST http://localhost:10200/api/Encryption/decrypt
+POST https://localhost:7043/api/Encryption/decrypt
 Content-Type: application/json
+Accept-Encoding: gzip, deflate, br
 
 {
   "data": "DAAAAO7s5b/DHiPUh/373BAAAAA9m2CIrzRfR1yKGkeaa/9gZc+h6A=="
