@@ -6,22 +6,6 @@ namespace IT.Encryption;
 
 public class EncryptionHelpers
 {
-    private const int NonceBytes = 10;
-    private const int KeyBytes = 16;
-    
-    public static byte[] Encrypt(byte[] toEncrypt, byte[] key, byte[] tag, byte[]? associatedData = null)
-    {
-        var nonce = new byte[NonceBytes];
-        var cipherText = new byte[toEncrypt.Length];
-
-        var cipher1 = Aes.Create();
-
-        using var cipher = new AesGcm(key);
-        cipher.Encrypt(nonce, toEncrypt, cipherText, tag, associatedData);
-
-        return Concat(tag, Concat(nonce, cipherText));
-    }
-    
     public static string Encrypt(string plain, byte[] key)
     {
         // Get bytes of plaintext string
@@ -81,45 +65,4 @@ public class EncryptionHelpers
         // Convert plain bytes back into string
         return Encoding.UTF8.GetString(plainBytes);
     }
-    
-    public static byte[] Decrypt(byte[] cipherText, byte[] key, byte[]? associatedData = null)
-    {
-        var tag = SubArray(cipherText, 0, KeyBytes);
-        var nonce = SubArray(cipherText, KeyBytes, NonceBytes);
-
-        var toDecrypt = SubArray(cipherText, KeyBytes + NonceBytes, cipherText.Length - tag.Length - nonce.Length);
-        var decryptedData = new byte[toDecrypt.Length];
-
-        using var cipher = new AesGcm(key);
-        cipher.Decrypt(nonce, toDecrypt, tag, decryptedData, associatedData);
-
-        return decryptedData;
-    }
-
-    private static byte[] Concat(byte[] a, byte[] b)
-    {
-        var output = new byte[a.Length + b.Length];
-
-        for (var i = 0; i < a.Length; i++)
-        {
-            output[i] = a[i];
-        }
-
-        for (var j = 0; j < b.Length; j ++)
-        {
-            output[a.Length + j] = b[j];
-        }
-
-        return output;
-    }
-
-    private static byte[] SubArray(byte[] data, int start, int length)
-    {
-        var result = new byte[length];
-
-        Array.Copy(data, start, result, 0, length);
-
-        return result;
-    }
-
 }
