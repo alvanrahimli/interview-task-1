@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IT.Gateway", "IT.Gateway\IT.Gateway.csproj", "{4C625763-6592-4FE7-83CC-7983280D7C76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IT.Encryption", "IT.Encryption\IT.Encryption.csproj", "{FED5DC5A-A14B-4A33-9B39-94FFF64427B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C625763-6592-4FE7-83CC-7983280D7C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C625763-6592-4FE7-83CC-7983280D7C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C625763-6592-4FE7-83CC-7983280D7C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C625763-6592-4FE7-83CC-7983280D7C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED5DC5A-A14B-4A33-9B39-94FFF64427B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED5DC5A-A14B-4A33-9B39-94FFF64427B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED5DC5A-A14B-4A33-9B39-94FFF64427B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED5DC5A-A14B-4A33-9B39-94FFF64427B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

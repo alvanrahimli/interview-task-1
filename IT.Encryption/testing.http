@@ -1,0 +1,18 @@
+### Encrypt
+POST https://localhost:7026/api/Encryption/encrypt
+Content-Type: application/json
+
+{
+  "data": "BBBB"
+}
+
+### Decrypt
+POST https://localhost:7026/api/Encryption/decrypt
+Content-Type: application/json
+
+{
+"data": "DAAAANIq2OVxslOgKWPJLxAAAAANEule2dNzTVx5xtXYY0rNYJmr8g=="
+}
+
+### Rotate
+POST https://localhost:7026/api/Encryption/rotate-key

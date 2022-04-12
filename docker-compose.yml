@@ -1,0 +1,50 @@
+version: "3.9"
+networks:
+  default:
+    external:
+      name: bilgin-shared-network
+
+services:
+  gateway-api:
+    image: alvanrahimli/it-gateway-api
+    container_name: it-gateway-api
+    build:
+      context: .
+      dockerfile: IT.Gateway/Dockerfile
+    ports:
+      - "10100:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASP_ENV}
+      ConnectionStrings__Default: Server=db;Database=${DB_NAME};Uid=${DB_USER};Pwd=${DB_PASS};
+      ServiceAddresses__EncryptionService: http://encryption-api
+    depends_on:
+      - db
+
+  encryption-api:
+    image: alvanrahimli/it-encryption-api
+    container_name: it-encryption-api
+    build:
+      context: .
+      dockerfile: IT.Encryption/Dockerfile
+    ports:
+      - "10200:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASP_ENV}
+      ConnectionStrings__Default: Server=db;Database=${DB_NAME};Uid=${DB_USER};Pwd=${DB_PASS};
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    container_name: interview-pg
+    ports:
+      - "5432:5432"
+    volumes:
+      - './.docker/db/data/:/var/lib/postgresql/'
+      - './.docker/db/logs/:/var/log/postgresql/'
+      - './.docker/db/etc/:/etc/postgresql/'
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}

@@ -1,0 +1,15 @@
+### Encrypt
+POST http://localhost:10200/api/Encryption/encrypt
+Content-Type: application/json
+
+{
+  "data": "AAAA"
+}
+
+### Decrypt
+POST http://localhost:10200/api/Encryption/decrypt
+Content-Type: application/json
+
+{
+  "data": "DAAAAO7s5b/DHiPUh/373BAAAAA9m2CIrzRfR1yKGkeaa/9gZc+h6A=="
+}
