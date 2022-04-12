@@ -34,12 +34,12 @@ public class EncryptionController : ControllerBase
         catch (FlurlHttpException e)
         {
             _logger.LogError("Could not get encrypted message: {ErrorMsg}", e.Message);
-            return StatusCode(500, await e.GetResponseStringAsync());
+            return StatusCode(500, new ErrorModel("Could not reach to Encryption service"));
         }
         catch (Exception ex)
         {
             _logger.LogError("Could not get encrypted message: {ErrorMsg}", ex.Message);
-            return StatusCode(500);
+            return StatusCode(500, new ErrorModel($"Could not get encrypted message: {ex.Message}"));
         }
     }
     
@@ -56,12 +56,12 @@ public class EncryptionController : ControllerBase
         catch (FlurlHttpException e)
         {
             _logger.LogError("Could not get encrypted message: {ErrorMsg}", e.Message);
-            return StatusCode(500, await e.GetResponseStringAsync());
+            return StatusCode(500, new ErrorModel("Could not reach to Encryption service"));
         }
         catch (Exception ex)
         {
             _logger.LogError("Could not get decrypted message: {ErrorMsg}", ex.Message);
-            return StatusCode(500);
+            return StatusCode(500, new ErrorModel($"Could not get encrypted message: {ex.Message}"));
         }
     }
 }
